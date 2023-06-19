@@ -1,0 +1,161 @@
+
+
+USE [Test]
+GO
+
+/****** Object:  Table [dbo].[RaviEmp]    Script Date: 19-06-2023 14:22:40 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[RaviEmp](
+	[EmployeeID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NULL,
+	[Email] [nvarchar](50) NULL,
+	[Phone] [nvarchar](50) NULL,
+	[Address] [nvarchar](50) NULL,
+	[State_Id] [int] NOT NULL,
+	[City_ID] [int] NOT NULL,
+	[Country_Id] [int] NOT NULL,
+	[Gender] [varchar](50) NOT NULL,
+	[DOB] [date] NULL,
+ CONSTRAINT [PK_RaviEmp] PRIMARY KEY CLUSTERED 
+(
+	[EmployeeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[RaviEmp]  WITH CHECK ADD  CONSTRAINT [FK_RaviEmp_RaviCity] FOREIGN KEY([City_ID])
+REFERENCES [dbo].[RaviCity] ([City_ID])
+GO
+
+ALTER TABLE [dbo].[RaviEmp] CHECK CONSTRAINT [FK_RaviEmp_RaviCity]
+GO
+
+ALTER TABLE [dbo].[RaviEmp]  WITH CHECK ADD  CONSTRAINT [FK_RaviEmp_RaviCountry] FOREIGN KEY([Country_Id])
+REFERENCES [dbo].[RaviCountry] ([Country_Id])
+GO
+
+ALTER TABLE [dbo].[RaviEmp] CHECK CONSTRAINT [FK_RaviEmp_RaviCountry]
+GO
+
+ALTER TABLE [dbo].[RaviEmp]  WITH CHECK ADD  CONSTRAINT [FK_RaviEmp_RaviState] FOREIGN KEY([State_Id])
+REFERENCES [dbo].[RaviState] ([State_Id])
+GO
+
+ALTER TABLE [dbo].[RaviEmp] CHECK CONSTRAINT [FK_RaviEmp_RaviState]
+GO
+
+
+
+----------------------------
+
+
+USE [Test]
+GO
+/****** Object:  Table [dbo].[RaviCity]    Script Date: 19-06-2023 14:24:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RaviCity](
+	[City_ID] [int] IDENTITY(1,1) NOT NULL,
+	[City_Name] [nvarchar](50) NULL,
+	[State_Id] [int] NOT NULL,
+ CONSTRAINT [PK_RaviCity] PRIMARY KEY CLUSTERED 
+(
+	[City_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RaviCountry]    Script Date: 19-06-2023 14:24:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RaviCountry](
+	[Country_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Country_Name] [varchar](50) NULL,
+ CONSTRAINT [PK_RaviCountry] PRIMARY KEY CLUSTERED 
+(
+	[Country_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RaviState]    Script Date: 19-06-2023 14:24:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RaviState](
+	[State_Id] [int] IDENTITY(1,1) NOT NULL,
+	[State_Name] [nvarchar](50) NULL,
+	[Country_Id] [int] NULL,
+ CONSTRAINT [PK_RaviState] PRIMARY KEY CLUSTERED 
+(
+	[State_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[RaviCity] ON 
+GO
+INSERT [dbo].[RaviCity] ([City_ID], [City_Name], [State_Id]) VALUES (1, N'Surat', 1)
+GO
+INSERT [dbo].[RaviCity] ([City_ID], [City_Name], [State_Id]) VALUES (2, N'Vadodara', 1)
+GO
+INSERT [dbo].[RaviCity] ([City_ID], [City_Name], [State_Id]) VALUES (3, N'Pune', 2)
+GO
+INSERT [dbo].[RaviCity] ([City_ID], [City_Name], [State_Id]) VALUES (4, N'Nasik', 2)
+GO
+INSERT [dbo].[RaviCity] ([City_ID], [City_Name], [State_Id]) VALUES (5, N'Jersy City', 4)
+GO
+INSERT [dbo].[RaviCity] ([City_ID], [City_Name], [State_Id]) VALUES (6, N'Trenton', 4)
+GO
+INSERT [dbo].[RaviCity] ([City_ID], [City_Name], [State_Id]) VALUES (7, N'Seattle', 5)
+GO
+INSERT [dbo].[RaviCity] ([City_ID], [City_Name], [State_Id]) VALUES (8, N'Olympia', 5)
+GO
+INSERT [dbo].[RaviCity] ([City_ID], [City_Name], [State_Id]) VALUES (9, N'Borough', 6)
+GO
+INSERT [dbo].[RaviCity] ([City_ID], [City_Name], [State_Id]) VALUES (10, N'Udipur', 3)
+GO
+INSERT [dbo].[RaviCity] ([City_ID], [City_Name], [State_Id]) VALUES (11, N'Ajmer', 3)
+GO
+INSERT [dbo].[RaviCity] ([City_ID], [City_Name], [State_Id]) VALUES (13, N'Jesalmer', 3)
+GO
+SET IDENTITY_INSERT [dbo].[RaviCity] OFF
+GO
+SET IDENTITY_INSERT [dbo].[RaviCountry] ON 
+GO
+INSERT [dbo].[RaviCountry] ([Country_Id], [Country_Name]) VALUES (1, N'India')
+GO
+INSERT [dbo].[RaviCountry] ([Country_Id], [Country_Name]) VALUES (2, N'US')
+GO
+INSERT [dbo].[RaviCountry] ([Country_Id], [Country_Name]) VALUES (3, N'UK')
+GO
+SET IDENTITY_INSERT [dbo].[RaviCountry] OFF
+GO
+SET IDENTITY_INSERT [dbo].[RaviState] ON 
+GO
+INSERT [dbo].[RaviState] ([State_Id], [State_Name], [Country_Id]) VALUES (1, N'Gujarat', 1)
+GO
+INSERT [dbo].[RaviState] ([State_Id], [State_Name], [Country_Id]) VALUES (2, N'Maharastra', 1)
+GO
+INSERT [dbo].[RaviState] ([State_Id], [State_Name], [Country_Id]) VALUES (3, N'Rajsthan', 1)
+GO
+INSERT [dbo].[RaviState] ([State_Id], [State_Name], [Country_Id]) VALUES (4, N'New Jersy', 2)
+GO
+INSERT [dbo].[RaviState] ([State_Id], [State_Name], [Country_Id]) VALUES (5, N'WashingTone', 2)
+GO
+INSERT [dbo].[RaviState] ([State_Id], [State_Name], [Country_Id]) VALUES (6, N'London', 3)
+GO
+SET IDENTITY_INSERT [dbo].[RaviState] OFF
+GO
+ALTER TABLE [dbo].[RaviState]  WITH CHECK ADD  CONSTRAINT [FK_RaviState_RaviCountry1] FOREIGN KEY([Country_Id])
+REFERENCES [dbo].[RaviCountry] ([Country_Id])
+GO
+ALTER TABLE [dbo].[RaviState] CHECK CONSTRAINT [FK_RaviState_RaviCountry1]
+GO

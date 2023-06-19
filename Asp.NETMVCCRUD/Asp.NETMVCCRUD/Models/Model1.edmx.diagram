@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="87a859e3206b48cf874e7a7131107f94" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="TestModel.RaviCity" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TestModel.RaviCountry" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="TestModel.RaviEmp" Width="1.5" PointX="3" PointY="3.125" />
+        <EntityTypeShape EntityType="TestModel.RaviState" Width="1.5" PointX="3" PointY="7.5" />
+        <AssociationConnector Association="TestModel.FK_RaviEmp_RaviCity" />
+        <AssociationConnector Association="TestModel.FK_RaviEmp_RaviCountry" />
+        <AssociationConnector Association="TestModel.FK_RaviState_RaviCountry1" />
+        <AssociationConnector Association="TestModel.FK_RaviEmp_RaviState" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

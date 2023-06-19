@@ -1,0 +1,40 @@
+
+Refer for practical test
+
+Crud opeartion with all input controls & cascading drop down list
+working good
+
+
+Connection string
+Databasename- Test
+
+Database first EF approach
+
+<connectionStrings>
+    <add name="DBModel" connectionString="metadata=res://*/Models.DBModels.csdl|res://*/Models.DBModels.ssdl|res://*/Models.DBModels.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DELL-PC\sqlexpress;initial catalog=Ravi_Test_1;persist security info=True;user id=sa;password=_056pwjr;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="TestEntities" connectionString="metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.;initial catalog=Test;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+  </connectionStrings>
+
+
+in use- TestEntities
+
+no issues are found
+
+
+packages- 
+
+
+bootstrap 3.3.7
+EntityFramework 6.0.0
+jQuery 1.12.4
+jQuery.UI.Combined 1.12.1
+jQuery.Validation 1.11.1
+Microsoft.AspNet.Mvc 5.1.1
+Microsoft.AspNet.Razor 3.1.2
+Microsoft.AspNet.WebPages 3.1.2
+Microsoft.jQuery.Unobtrusive.Validation 3.0.0
+Microsoft.Web.Infrastructure 1.0.0
+Newtonsoft.Json 13.0.3
+
+
+

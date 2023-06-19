@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="RaviCity">
+          <Key>
+            <PropertyRef Name="City_ID" />
+          </Key>
+          <Property Name="City_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="State_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RaviCountry">
+          <Key>
+            <PropertyRef Name="Country_Id" />
+          </Key>
+          <Property Name="Country_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Country_Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RaviEmp">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="State_Id" Type="int" Nullable="false" />
+          <Property Name="City_ID" Type="int" Nullable="false" />
+          <Property Name="Country_Id" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DOB" Type="date" />
+        </EntityType>
+        <EntityType Name="RaviState">
+          <Key>
+            <PropertyRef Name="State_Id" />
+          </Key>
+          <Property Name="State_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="State_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country_Id" Type="int" />
+        </EntityType>
+        <Association Name="FK_RaviEmp_RaviCity">
+          <End Role="RaviCity" Type="Self.RaviCity" Multiplicity="1" />
+          <End Role="RaviEmp" Type="Self.RaviEmp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RaviCity">
+              <PropertyRef Name="City_ID" />
+            </Principal>
+            <Dependent Role="RaviEmp">
+              <PropertyRef Name="City_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RaviEmp_RaviCountry">
+          <End Role="RaviCountry" Type="Self.RaviCountry" Multiplicity="1" />
+          <End Role="RaviEmp" Type="Self.RaviEmp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RaviCountry">
+              <PropertyRef Name="Country_Id" />
+            </Principal>
+            <Dependent Role="RaviEmp">
+              <PropertyRef Name="Country_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RaviEmp_RaviState">
+          <End Role="RaviState" Type="Self.RaviState" Multiplicity="1" />
+          <End Role="RaviEmp" Type="Self.RaviEmp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RaviState">
+              <PropertyRef Name="State_Id" />
+            </Principal>
+            <Dependent Role="RaviEmp">
+              <PropertyRef Name="State_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RaviState_RaviCountry1">
+          <End Role="RaviCountry" Type="Self.RaviCountry" Multiplicity="0..1" />
+          <End Role="RaviState" Type="Self.RaviState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RaviCountry">
+              <PropertyRef Name="Country_Id" />
+            </Principal>
+            <Dependent Role="RaviState">
+              <PropertyRef Name="Country_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestModelStoreContainer">
+          <EntitySet Name="RaviCity" EntityType="Self.RaviCity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RaviCountry" EntityType="Self.RaviCountry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RaviEmp" EntityType="Self.RaviEmp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RaviState" EntityType="Self.RaviState" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_RaviEmp_RaviCity" Association="Self.FK_RaviEmp_RaviCity">
+            <End Role="RaviCity" EntitySet="RaviCity" />
+            <End Role="RaviEmp" EntitySet="RaviEmp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RaviEmp_RaviCountry" Association="Self.FK_RaviEmp_RaviCountry">
+            <End Role="RaviCountry" EntitySet="RaviCountry" />
+            <End Role="RaviEmp" EntitySet="RaviEmp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RaviEmp_RaviState" Association="Self.FK_RaviEmp_RaviState">
+            <End Role="RaviState" EntitySet="RaviState" />
+            <End Role="RaviEmp" EntitySet="RaviEmp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RaviState_RaviCountry1" Association="Self.FK_RaviState_RaviCountry1">
+            <End Role="RaviCountry" EntitySet="RaviCountry" />
+            <End Role="RaviState" EntitySet="RaviState" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RaviCities" EntityType="TestModel.RaviCity" />
+          <EntitySet Name="RaviCountries" EntityType="TestModel.RaviCountry" />
+          <EntitySet Name="RaviEmps" EntityType="TestModel.RaviEmp" />
+          <EntitySet Name="RaviStates" EntityType="TestModel.RaviState" />
+          <AssociationSet Name="FK_RaviEmp_RaviCity" Association="TestModel.FK_RaviEmp_RaviCity">
+            <End Role="RaviCity" EntitySet="RaviCities" />
+            <End Role="RaviEmp" EntitySet="RaviEmps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RaviEmp_RaviCountry" Association="TestModel.FK_RaviEmp_RaviCountry">
+            <End Role="RaviCountry" EntitySet="RaviCountries" />
+            <End Role="RaviEmp" EntitySet="RaviEmps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RaviState_RaviCountry1" Association="TestModel.FK_RaviState_RaviCountry1">
+            <End Role="RaviCountry" EntitySet="RaviCountries" />
+            <End Role="RaviState" EntitySet="RaviStates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RaviEmp_RaviState" Association="TestModel.FK_RaviEmp_RaviState">
+            <End Role="RaviState" EntitySet="RaviStates" />
+            <End Role="RaviEmp" EntitySet="RaviEmps" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="RaviCity">
+          <Key>
+            <PropertyRef Name="City_ID" />
+          </Key>
+          <Property Name="City_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RaviEmps" Relationship="TestModel.FK_RaviEmp_RaviCity" FromRole="RaviCity" ToRole="RaviEmp" />
+        </EntityType>
+        <EntityType Name="RaviCountry">
+          <Key>
+            <PropertyRef Name="Country_Id" />
+          </Key>
+          <Property Name="Country_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RaviEmps" Relationship="TestModel.FK_RaviEmp_RaviCountry" FromRole="RaviCountry" ToRole="RaviEmp" />
+          <NavigationProperty Name="RaviStates" Relationship="TestModel.FK_RaviState_RaviCountry1" FromRole="RaviCountry" ToRole="RaviState" />
+        </EntityType>
+        <EntityType Name="RaviEmp">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State_Id" Type="Int32" Nullable="false" />
+          <Property Name="City_ID" Type="Int32" Nullable="false" />
+          <Property Name="Country_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RaviCity" Relationship="TestModel.FK_RaviEmp_RaviCity" FromRole="RaviEmp" ToRole="RaviCity" />
+          <NavigationProperty Name="RaviCountry" Relationship="TestModel.FK_RaviEmp_RaviCountry" FromRole="RaviEmp" ToRole="RaviCountry" />
+          <NavigationProperty Name="RaviState" Relationship="TestModel.FK_RaviEmp_RaviState" FromRole="RaviEmp" ToRole="RaviState" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="RaviState">
+          <Key>
+            <PropertyRef Name="State_Id" />
+          </Key>
+          <Property Name="State_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="State_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country_Id" Type="Int32" />
+          <NavigationProperty Name="RaviCountry" Relationship="TestModel.FK_RaviState_RaviCountry1" FromRole="RaviState" ToRole="RaviCountry" />
+          <NavigationProperty Name="RaviEmps" Relationship="TestModel.FK_RaviEmp_RaviState" FromRole="RaviState" ToRole="RaviEmp" />
+        </EntityType>
+        <Association Name="FK_RaviEmp_RaviCity">
+          <End Type="TestModel.RaviCity" Role="RaviCity" Multiplicity="1" />
+          <End Type="TestModel.RaviEmp" Role="RaviEmp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RaviCity">
+              <PropertyRef Name="City_ID" />
+            </Principal>
+            <Dependent Role="RaviEmp">
+              <PropertyRef Name="City_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RaviEmp_RaviCountry">
+          <End Type="TestModel.RaviCountry" Role="RaviCountry" Multiplicity="1" />
+          <End Type="TestModel.RaviEmp" Role="RaviEmp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RaviCountry">
+              <PropertyRef Name="Country_Id" />
+            </Principal>
+            <Dependent Role="RaviEmp">
+              <PropertyRef Name="Country_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RaviState_RaviCountry1">
+          <End Type="TestModel.RaviCountry" Role="RaviCountry" Multiplicity="0..1" />
+          <End Type="TestModel.RaviState" Role="RaviState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RaviCountry">
+              <PropertyRef Name="Country_Id" />
+            </Principal>
+            <Dependent Role="RaviState">
+              <PropertyRef Name="Country_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RaviEmp_RaviState">
+          <End Type="TestModel.RaviState" Role="RaviState" Multiplicity="1" />
+          <End Type="TestModel.RaviEmp" Role="RaviEmp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RaviState">
+              <PropertyRef Name="State_Id" />
+            </Principal>
+            <Dependent Role="RaviEmp">
+              <PropertyRef Name="State_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestModelStoreContainer" CdmEntityContainer="TestEntities">
+          <EntitySetMapping Name="RaviCities">
+            <EntityTypeMapping TypeName="TestModel.RaviCity">
+              <MappingFragment StoreEntitySet="RaviCity">
+                <ScalarProperty Name="State_Id" ColumnName="State_Id" />
+                <ScalarProperty Name="City_Name" ColumnName="City_Name" />
+                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RaviCountries">
+            <EntityTypeMapping TypeName="TestModel.RaviCountry">
+              <MappingFragment StoreEntitySet="RaviCountry">
+                <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RaviEmps">
+            <EntityTypeMapping TypeName="TestModel.RaviEmp">
+              <MappingFragment StoreEntitySet="RaviEmp">
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+                <ScalarProperty Name="State_Id" ColumnName="State_Id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RaviStates">
+            <EntityTypeMapping TypeName="TestModel.RaviState">
+              <MappingFragment StoreEntitySet="RaviState">
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="State_Name" ColumnName="State_Name" />
+                <ScalarProperty Name="State_Id" ColumnName="State_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

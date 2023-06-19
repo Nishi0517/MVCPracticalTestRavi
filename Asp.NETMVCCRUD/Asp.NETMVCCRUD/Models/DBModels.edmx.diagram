@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5beedd7fe44648fe9fd0c66a7ae1e120" Name="Diagram1" ZoomLevel="111">
+        <EntityTypeShape EntityType="MvcCRUDDBModel.Employee" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcCRUDDBModel.City" Width="1.5" PointX="5.625" PointY="0.875" />
+        <EntityTypeShape EntityType="MvcCRUDDBModel.State" Width="1.5" PointX="3.375" PointY="1" />
+        <AssociationConnector Association="MvcCRUDDBModel.FK__City__State_Id__38996AB5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
